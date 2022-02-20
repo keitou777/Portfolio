@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Product Landing Page</title>
+        <style>
+           body {
+                background-color: lightgrey;
+                color: black;
+                font-size: 20px;
+                font-family: arial;
+                border: 0%;
+                height: 100%;
+                bottom: 0;
+                
+            }
+            .navbar1 {
+                width: 100%;
+                flex-wrap: wrap;
+                display: flex;
+                justify-content: center;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                position: fixed;
+                background-color: lightgrey;
+                top: 0;
+            }
+           .div1 {
+                flex-wrap: wrap;
+                display: flex;
+                justify-content: center;
+                padding-top: 60px;
+                padding-bottom: 0px;
+                bottom: 0;
+            }
+            .navbar2 {
+                justify-content: center;
+                flex-wrap: wrap;
+                min-width: 430px;
+                max-width:100%;
+                padding: 10px;
+            }
+            #logo {
+                justify-content: center;
+                text-align: center;
+            }
+            #links {
+                justify-content: center;
+            }
+            @media (min-width: 900px){
+                .navbar2 {
+                    max-width: 300px;
+                    min-width: 0;
+                }
+                #links {
+                    max-width: 700px;
+                    justify-content: end;
+                    display:flex;
+                    margin-left: auto;
+                }
+                .navbar3 {
+                    max-width: 50px;
+                    color: green;
+                 }
+            }
+            .navbar3 {
+                min-width: 200px;
+                text-align: center;
+            }
+           .header-content {
+                width: 100%;
+                display:flex;
+                justify-content: center;
+                align-content: column;
+            }
+           button {
+               width: 100%;
+               font-size: 22px;
+               background-color: yellow;
+           }
+           .feature1 {
+               width: 100%;
+               max-width: 1000px;
+               text-align: center;
+           }
+           .price1 {
+               max-width: 1000px;
+               width: 100%;
+               display: flex;
+               justify-content: space-around;
+               flex-wrap: wrap;
+           }
+           .price2 {
+               width: 100%;
+               max-width: 250px;
+               text-align: center;
+               border: solid;
+               padding: 20px;
+               margin-top: 10px;
+               margin-bottom: 10px;
+           }
+           .footer1 {
+               width: 100%;
+               max-width: 1000px;
+               background-color: grey;
+               justify-content: end;
+               bottom: 0;
+           }
+           .footer2 {
+               width: 100%;
+               display: flex;
+               flex-wrap: wrap;
+               justify-content: end;
+           }
+           .footer_links {
+               width: 110px;
+               display: flex;
+               justify-content: center;
+           }
+        </style>
+    </head>
+    <body>
+        <!--navbar-->
+            <div class="navbar1">
+                    <div id="logo" class="navbar2">*Logo* Original Trombones</div>
+                    <div id="links" class="navbar2">
+                        <div class="navbar3"><a href="#features">Features</a></div>
+                        <div class="navbar3"><a href="#works">How It works</a></div>
+                        <div class="navbar3"><a href="#pricing">Pricing</a></div>
+                    </div>
+            </div>
+            <div class="div1"></div>
+        <!--header-->
+            <div class="div1">
+                
+                <div class="header-content"><h4>Handcrafted, home-made masterpieces</h4></div>
+                <form>
+                    <div class="header-content"><input type="email" placeholder="Enter your email address"></div>
+                    <div class="header-content"><button>Get started</button></div>
+                </form>
+            </div>
+        <!--features-->
+            <div class="div1" id="features">
+                <div class="feature1">
+                    <h4>Premium Materials</h4>
+                    <p>Our trombones use the shiniest brass which is sourced locally. This will increase the longevity of your purchase.</p>
+                </div>
+                <div class="feature1">
+                    <h4>Fast Shipping</h4>
+                    <p>We make sure you recieve your trombone as soon as we have finished making it. We also provide free returns if you are not satisfied.</p>
+                </div>
+                <div class="feature1">
+                    <h4>Quality Assurance</h4>
+                    <p>For every purchase you make, we will ensure there are no damages or faults and we will check and test the pitch of your instrument.</p>
+                </div>
+            </div>
+        <!--how it works-->
+            <div class="div1" id="works">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/y8Yv4pnO7qc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+           <!--pricing-->
+            <div class="div1" id="pricing">
+             <div class="price1">
+                 <div class="price2">
+                     <h4>TENOR TROMBONE</h4>
+                     <h2>$600</h2>
+                     <p>Lorem ipsum.</p>
+                     <p>Lorem ipsum.</p>
+                     <p>Lorem ipsum.</p>
+                     <p>Lorem ipsum.</p>
+                     <button>SELECT</button>
+                 </div>
+                 <div class="price2">
+                     <h4>BASS TROMBONE</h4>
+                     <h2>$900</h2>
+                     <p>Lorem ipsum.</p>
+                     <p>Lorem ipsum.</p>
+                     <p>Lorem ipsum.</p>
+                     <p>Lorem ipsum.</p>
+                     <button>SELECT</button>
+                 </div>
+                 <div class="price2">
+                     <h4>VALVE TROMBONE</h4>
+                     <h2>$1200</h2>
+                     <p>Lorem ipsum.</p>
+                     <p>Lorem ipsum.</p>
+                     <p>Lorem ipsum.</p>
+                     <p>Lorem ipsum.</p>
+                     <button>SELECT</button>
+                 </div>
+             </div>
+             
+            </div>
+          <!--footer-->
+            <div class="div1">
+                <div class="footer1">
+                    <div class="footer2">
+                        <div class="footer_links"><a href="#privacy">Privacy</a></div>
+                        <div class="footer_links"><a href="#Terms">Terms</a></div>
+                        <div class="footer_links"><a href="#Contact">Contact</a></div>
+                    </div>
+                    <div class="footer2">Copyright 2022, Original Trombones</div>
+                </div>
+            </div>
+    </body>
+</html>
+
+

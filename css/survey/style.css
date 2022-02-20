@@ -1,0 +1,25 @@
+* {
+    font-family: arial;
+  
+  text-align: center;
+}
+
+#comments{
+  width: 50%;
+  min-height: 100px;
+}
+
+body{
+  background: url("https://images.pexels.com/photos/628776/pexels-photo-628776.jpeg?auto=compress&cs=tinysrgb&h=650&w=940");
+    background-size: cover;
+}
+
+form {
+  background: rgba(255,255,255,0.7);
+  width: 60%;
+}
+
+#main {
+  background: rgba(255,255,255,0.7);
+  width: 60%;
+}

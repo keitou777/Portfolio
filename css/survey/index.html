@@ -1,0 +1,101 @@
+<script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+
+<!DOCTYPE html>
+<html>
+  <header>
+    <title>Survey form</title>
+    <link rel="stylesheet" href="styles.css">
+  </header>
+  <body>
+    <div id="main">
+        <h1 id="title">Food delivery service survey</h1>
+        <p id="description">To understand everyone's needs in the industry</p>
+    </div>
+    <form id="survey-form">
+        <br>
+      <label id="name-label">Name</label>
+      <input id="name" type="text" required placeholder="Your name">
+      <br>
+      <label id="email-label">Email</label>
+      <input id="email" type="email" required placeholder="Your email">
+      <br>
+      <label id="number-label">Age</label>
+      <input id="number" type="number" min="1" max="99" placeholder="Your age">
+      <p>Your occupation</p>
+      <select id="dropdown" name="occupation" class="form-control" required>
+        <option disabled selected value>Select occupation</option>
+        <option value="student">Student</option>
+        <option value="job">Full Time Worker</option>
+        <option value="learner">Part Time Worker</option>
+        <option value="preferNo">Entrepreneur</option>
+        <option value="other">Other</option>
+      </select>
+      <p>Which is your favourite takeaway/delivery food?</p>
+      <label>
+        <input
+          name="user-recommend"
+          value="Pizza"
+          type="radio"
+          class="input-radio"
+          checked
+        />Pizza</label
+      >
+      <label>
+        <input
+          name="user-recommend"
+          value="Sushi"
+          type="radio"
+          class="input-radio"
+        />Sushi</label
+      >
+
+      <label><input
+          name="user-recommend"
+          value="Chinese"
+          type="radio"
+          class="input-radio"/>Chinese</label>
+      <label><input
+          name="user-recommend"
+          value="Kebab"
+          type="radio"
+          class="input-radio"/>Kebab</label>
+      <label><input
+          name="user-recommend"
+          value="Other"
+          type="radio"
+          class="input-radio"/>Other</label>
+      <p>What time do you usually order delivery food?</p>
+      <label><input
+          name="prefer"
+          value="24-6"
+          type="checkbox"
+          class="input-checkbox"
+        />24-6</label>
+      <label>
+        <input
+          name="prefer"
+          value="6-12"
+          type="checkbox"
+          class="input-checkbox"
+        />6-12</label>
+      <label
+        ><input
+          name="prefer"
+          value="12-18"
+          type="checkbox"
+          class="input-checkbox"
+        />12-18</label>
+      <label>
+        <input
+          name="prefer"
+          value="18-24"
+          type="checkbox"
+          class="input-checkbox"
+        />18-24</label>
+      <div><p>Comments</p>
+        <textarea id="comments"></textarea>
+      </div>
+      <input id="submit" type="submit">
+      <form/>
+  </body>
+</html>

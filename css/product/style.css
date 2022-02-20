@@ -1,0 +1,43 @@
+#header {
+  top: 0;
+  width: 100%;
+  display: fixed;
+  justify-content: space-around;
+  align-items: center;
+  position: fixed;
+  
+}
+#logo{
+  width: 100%;
+  background: white;
+  top: 0;
+}
+#nav-bar {
+  position: fixed;
+  top: 0;
+  min-height: 70px;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+}
+nav > ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+div {
+
+  align: center;
+  align-items: center;
+  justify-content: center;
+  font-family: arial;
+}
+@media (max-width: 600px) {
+  header {
+    flex-wrap: wrap;
+  }
+}
+#who, #features, #buy {
+    margin: 15%;
+}
