@@ -63,6 +63,8 @@ function removeShift(index) {
         displayShifts();
 
     }
+        document.getElementById("year").value = "";
+        document.getElementById("month").value = "";
         populateYears();
         populateMonths();
 }
@@ -95,7 +97,7 @@ function calculateSummary() {
     const shiftEndTime = new Date(`2000-01-01 ${shift.endTime}`);
 
     // If the shift ends before 13:00 or starts after 14:00, skip this shift
-    if (shiftStartTime.getHours() < 13 && shiftEndTime.getHours() < 13) {
+    if (shiftStartTime.getHours() < 13 && shiftEndTime.getHours() < 13 && shiftStartTime.getHours() < shiftEndTime.getHours()) {
         return total;
     }
     
