@@ -146,18 +146,18 @@ const minutesPublicHoliday = totalHoursPublicHoliday % 60;
     
   
     // Check if Saturday and Sunday and public holiday hours are non-zero before including them in the alert
-    let alertMessage = `Summary for ${selectedYear} / ${monthToMonthName(selectedMonth)} :\n\nTotal hours = ${hours}:${formattedMinutes}\n`;
+    let alertMessage = `Summary For ${selectedYear} / ${monthToMonthName(selectedMonth)} :\n\nTotal Hours = ${hours}:${formattedMinutes}\n`;
     
     if (hoursSatAfter13 > 0 || minutesSatAfter13 > 0) {
-    alertMessage += `\nSat bonus = ${hoursSatAfter13}:${formattedMinutesSatAfter13}`;
+    alertMessage += `\nSat Bonus = ${hoursSatAfter13}:${formattedMinutesSatAfter13}`;
     }
     
     if (hoursSun > 0 || minutesSun > 0) {
-    alertMessage += `\nSun bonus = ${hoursSun}:${formattedMinutesSun}`;
+    alertMessage += `\nSun Bonus = ${hoursSun}:${formattedMinutesSun}`;
     }
     
     if (totalHoursPublicHoliday > 0) {
-        alertMessage += `\nPublic Holiday = ${Math.floor(totalHoursPublicHoliday / 60)}:${formattedMinutesPublicHoliday}`;
+        alertMessage += `\nPublic Holiday Bonus = ${Math.floor(totalHoursPublicHoliday / 60)}:${formattedMinutesPublicHoliday}`;
     }
     
     // Display the alert message
@@ -181,8 +181,13 @@ function displayShifts() {
 
     shifts.forEach((shift, index) => {
         const listItem = document.createElement("li");
-        listItem.innerHTML = `[${index + 1}]: ${shift.date} (${shift.dayOfWeek}) - ${shift.startTime} - ${shift.endTime} = ${shift.hours} hours
-                             <button onclick="removeShift(${index})">Remove</button>`;
+        
+        // Add a '*' if the shift is a public holiday
+        const publicHolidayMarker = shift.isPublicHoliday ? '*' : ' ';
+       
+        
+        listItem.innerHTML = `[${index + 1}]: ${shift.date} (${shift.dayOfWeek})${publicHolidayMarker}- ${shift.startTime} - ${shift.endTime}
+                             <button onclick="removeShift(${index})">X</button>`;
         shiftList.appendChild(listItem);
     });
     document.getElementById("shiftDisplay").style.display = "block";
