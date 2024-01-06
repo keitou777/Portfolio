@@ -95,16 +95,21 @@ function calculateSummary() {
     const shiftEndTime = new Date(`2000-01-01 ${shift.endTime}`);
 
     // If the shift ends before 13:00 or starts after 14:00, skip this shift
-    if (shiftEndTime.getHours() < 13 ) {
+    if (shiftStartTime.getHours() < 13 && shiftEndTime.getHours() < 13) {
         return total;
     }
-
+    
+    // If the shift ends is after 00:00
+    if (shiftEndTime.getHours() < 13) {
+        shiftEndTime.setHours(shiftEndTime.getHours() + 24);
+    }
+    
     // Calculate hours after 13:00
     const hoursAfter13 = Math.max(0, Math.floor((shiftEndTime - Math.max(shiftStartTime, new Date(`2000-01-01 13:00`))) / (1000 * 60 * 60)));
     const minutesAfter13 = Math.max(0, Math.floor(((shiftEndTime - Math.max(shiftStartTime, new Date(`2000-01-01 13:00`))) % (1000 * 60 * 60)) / (1000 * 60)));
 
     return total + hoursAfter13 * 60 + minutesAfter13;
-}, 0);
+    }, 0);
 
 
     // Filter shifts on Sunday
@@ -203,6 +208,10 @@ function clearInputFields() {
 function calculateHours(start, end) {
     const startDateTime = new Date(`2000-01-01 ${start}`);
     const endDateTime = new Date(`2000-01-01 ${end}`);
+    // If end time is smaller than start time, add 24 hours to the end time
+    if (endDateTime < startDateTime) {
+        endDateTime.setHours(endDateTime.getHours() + 24);
+    }
     const timeDifference = endDateTime - startDateTime;
     const hours = Math.floor(timeDifference / (1000 * 60 * 60));
     const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
