@@ -7,6 +7,13 @@ function addShift() {
     const date = document.getElementById("date").value;
     const startTime = document.getElementById("startTime").value;
     const endTime = document.getElementById("endTime").value;
+    const isPublicHoliday = document.getElementById("publicHolidayCheckbox").checked;
+    
+    // Check if all required fields are filled in
+    if (!date || !startTime || !endTime) {
+        alert("Please fill in all required fields (Date, Start Time, and End Time) before adding a shift.");
+        return;
+    }
 
     // Calculate hours
     const hours = calculateHours(startTime, endTime);
@@ -19,13 +26,28 @@ function addShift() {
         startTime,
         endTime,
         hours,
-        dayOfWeek
+        dayOfWeek,
+        isPublicHoliday,
     };
     shifts.push(shift);
     saveShiftsToLocalStorage(); // Save shifts after adding a new shift
     displayShifts();
     clearInputFields();
+    populateYears();
+    populateMonths();
 }
+
+// Add an event listener to the Start Time input field
+document.getElementById("startTime").addEventListener("input", function() {
+    copyStartTimeToEndTime();
+});
+
+// Function to copy Start Time to End Time
+function copyStartTimeToEndTime() {
+    const startTime = document.getElementById("startTime").value;
+    document.getElementById("endTime").value = startTime;
+}
+
 
 
 function getDayOfWeek(date) {
@@ -39,7 +61,10 @@ function removeShift(index) {
         shifts.splice(index, 1);
         saveShiftsToLocalStorage(); // Save shifts after removing a shift
         displayShifts();
+
     }
+        populateYears();
+        populateMonths();
 }
 
 function viewShifts() {
@@ -61,11 +86,8 @@ function calculateSummary() {
     const totalHours = filteredShifts.reduce((total, shift) => total + getMinutes(shift.hours), 0);
 
 
-
-//    const totalHours = shifts.reduce((total, shift) => total + getMinutes(shift.hours), 0);
-
     // Filter shifts on Saturday
-    const shiftsSat = filteredShifts.filter((shift) => shift.dayOfWeek === 'Sat');
+    const shiftsSat = filteredShifts.filter((shift) => shift.dayOfWeek === 'Sat' && !shift.isPublicHoliday);
 
     // Calculate total hours on Saturday after 13:00
     const totalHoursSatAfter13 = shiftsSat.reduce((total, shift) => {
@@ -86,10 +108,17 @@ function calculateSummary() {
 
 
     // Filter shifts on Sunday
-    const shiftsSun = filteredShifts.filter((shift) => shift.dayOfWeek === 'Sun');
+    const shiftsSun = filteredShifts.filter((shift) => shift.dayOfWeek === 'Sun' && !shift.isPublicHoliday);
 
     // Calculate total hours on Sunday
     const totalHoursSun = shiftsSun.reduce((total, shift) => total + getMinutes(shift.hours), 0);
+    
+    // Filter shifts on Public Holidays
+    const shiftsPublicHoliday = filteredShifts.filter((shift) => shift.isPublicHoliday);
+
+    // Calculate total hours on Public Holidays
+    const totalHoursPublicHoliday = shiftsPublicHoliday.reduce((total, shift) => total + getMinutes(shift.hours), 0);
+
 
     // Calculate total hours and minutes
     const hours = Math.floor(totalHours / 60);
@@ -103,21 +132,32 @@ function calculateSummary() {
     const hoursSun = Math.floor(totalHoursSun / 60);
     const minutesSun = totalHoursSun % 60;
     
+
+// Calculate total minutes on Public Holidays
+const minutesPublicHoliday = totalHoursPublicHoliday % 60;
+
+    
     
     // Format minutes to always display double digits
     const formattedMinutes = (minutes < 10) ? `0${minutes}` : minutes;
     const formattedMinutesSatAfter13 = (minutesSatAfter13 < 10) ? `0${minutesSatAfter13}` : minutesSatAfter13;
     const formattedMinutesSun = (minutesSun < 10) ? `0${minutesSun}` : minutesSun;
+    const formattedMinutesPublicHoliday = (minutesPublicHoliday < 10) ? `0${minutesPublicHoliday}` : minutesPublicHoliday;
+    
   
-    // Check if Saturday and Sunday hours are non-zero before including them in the alert
+    // Check if Saturday and Sunday and public holiday hours are non-zero before including them in the alert
     let alertMessage = `Summary for ${selectedYear} / ${monthToMonthName(selectedMonth)} :\n\nTotal hours = ${hours}:${formattedMinutes}\n`;
     
     if (hoursSatAfter13 > 0 || minutesSatAfter13 > 0) {
-    alertMessage += `\nSat bonus = ${hoursSatAfter13} : ${formattedMinutesSatAfter13}`;
+    alertMessage += `\nSat bonus = ${hoursSatAfter13}:${formattedMinutesSatAfter13}`;
     }
     
     if (hoursSun > 0 || minutesSun > 0) {
-    alertMessage += `\nSun bonus = ${hoursSun} : ${formattedMinutesSun}`;
+    alertMessage += `\nSun bonus = ${hoursSun}:${formattedMinutesSun}`;
+    }
+    
+    if (totalHoursPublicHoliday > 0) {
+        alertMessage += `\nPublic Holiday = ${Math.floor(totalHoursPublicHoliday / 60)}:${formattedMinutesPublicHoliday}`;
     }
     
     // Display the alert message
@@ -152,6 +192,7 @@ function clearInputFields() {
     document.getElementById("date").value = "";
     document.getElementById("startTime").value = "";
     document.getElementById("endTime").value = "";
+    document.getElementById("publicHolidayCheckbox").checked = false;
 }
 
 function calculateHours(start, end) {
