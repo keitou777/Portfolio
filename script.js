@@ -65,7 +65,7 @@ function calculateSummary() {
 //    const totalHours = shifts.reduce((total, shift) => total + getMinutes(shift.hours), 0);
 
     // Filter shifts on Saturday
-    const shiftsSat = shifts.filter((shift) => shift.dayOfWeek === 'Sat');
+    const shiftsSat = filteredShifts.filter((shift) => shift.dayOfWeek === 'Sat');
 
     // Calculate total hours on Saturday after 13:00
     const totalHoursSatAfter13 = shiftsSat.reduce((total, shift) => {
@@ -86,7 +86,7 @@ function calculateSummary() {
 
 
     // Filter shifts on Sunday
-    const shiftsSun = shifts.filter((shift) => shift.dayOfWeek === 'Sun');
+    const shiftsSun = filteredShifts.filter((shift) => shift.dayOfWeek === 'Sun');
 
     // Calculate total hours on Sunday
     const totalHoursSun = shiftsSun.reduce((total, shift) => total + getMinutes(shift.hours), 0);
