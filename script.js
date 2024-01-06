@@ -11,7 +11,7 @@ function addShift() {
     
     // Check if all required fields are filled in
     if (!date || !startTime || !endTime) {
-        alert("Please fill in all required fields (Date, Start Time, and End Time) before adding a shift.");
+        alert("Please fill in all required fields (Date, Start Time, and End Time).");
         return;
     }
 
@@ -193,7 +193,7 @@ function displayShifts() {
         const publicHolidayMarker = shift.isPublicHoliday ? '*' : ' ';
        
         
-        listItem.innerHTML = `[${index + 1}]: ${shift.date} (${shift.dayOfWeek})${publicHolidayMarker}- ${shift.startTime} - ${shift.endTime}
+        listItem.innerHTML = `${shift.date}(${shift.dayOfWeek})${publicHolidayMarker} ${shift.startTime}-${shift.endTime} | ${shift.hours}
                              <button onclick="removeShift(${index})">X</button>`;
         shiftList.appendChild(listItem);
     });
