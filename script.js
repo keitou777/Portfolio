@@ -102,12 +102,27 @@ function calculateSummary() {
     // Calculate total hours and minutes on Sunday
     const hoursSun = Math.floor(totalHoursSun / 60);
     const minutesSun = totalHoursSun % 60;
+    
+    
+    // Format minutes to always display double digits
+    const formattedMinutes = (minutes < 10) ? `0${minutes}` : minutes;
+    const formattedMinutesSatAfter13 = (minutesSatAfter13 < 10) ? `0${minutesSatAfter13}` : minutesSatAfter13;
+    const formattedMinutesSun = (minutesSun < 10) ? `0${minutesSun}` : minutesSun;
+  
+    // Check if Saturday and Sunday hours are non-zero before including them in the alert
+    let alertMessage = `Summary for ${selectedYear} / ${monthToMonthName(selectedMonth)} :\n\nTotal hours = ${hours}:${formattedMinutes}\n`;
+    
+    if (hoursSatAfter13 > 0 || minutesSatAfter13 > 0) {
+    alertMessage += `\nSat bonus = ${hoursSatAfter13} : ${formattedMinutesSatAfter13}`;
+    }
+    
+    if (hoursSun > 0 || minutesSun > 0) {
+    alertMessage += `\nSun bonus = ${hoursSun} : ${formattedMinutesSun}`;
+    }
+    
+    // Display the alert message
+    alert(alertMessage);
 
-    alert(`
-        Total hours: ${hours} hours and ${minutes} minutes
-        Saturday bonus: ${hoursSatAfter13} hours and ${minutesSatAfter13} minutes
-        Sunday bonus: ${hoursSun} hours and ${minutesSun} minutes
-    `);
 }
 
 
@@ -126,7 +141,7 @@ function displayShifts() {
 
     shifts.forEach((shift, index) => {
         const listItem = document.createElement("li");
-        listItem.innerHTML = `[${index + 1}]: ${shift.date} (${shift.dayOfWeek}) - ${shift.startTime} - ${shift.endTime} - ${shift.hours} hours
+        listItem.innerHTML = `[${index + 1}]: ${shift.date} (${shift.dayOfWeek}) - ${shift.startTime} - ${shift.endTime} = ${shift.hours} hours
                              <button onclick="removeShift(${index})">Remove</button>`;
         shiftList.appendChild(listItem);
     });
@@ -188,9 +203,9 @@ function populateMonths() {
 // Helper function to convert month number to month name
 function monthToMonthName(month) {
     const monthNames = [
-        "January", "February", "March", "April",
-        "May", "June", "July", "August",
-        "September", "October", "November", "December"
+        "01", "02", "03", "04",
+        "05", "06", "07", "08",
+        "09", "10", "11", "12"
     ];
 
     return monthNames[month - 1];
