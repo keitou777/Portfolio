@@ -33,6 +33,7 @@ function addShift() {
     saveShiftsToLocalStorage(); // Save shifts after adding a new shift
     displayShifts();
     clearInputFields();
+emptyDropdowns()
     populateYears();
     populateMonths();
 }
@@ -65,6 +66,7 @@ function removeShift(index) {
     }
         document.getElementById("year").value = "";
         document.getElementById("month").value = "";
+emptyDropdowns()
         populateYears();
         populateMonths();
 }
@@ -228,6 +230,15 @@ function getMinutes(time) {
     return hours * 60 + minutes;
 }
 
+function emptyDropdowns() {
+    const yearDropdown = document.getElementById("year");
+    const monthDropdown = document.getElementById("month");
+
+    // Remove all options from the dropdowns
+    yearDropdown.innerHTML = "";
+    monthDropdown.innerHTML = "";
+}
+
 // Function to populate years in the dropdown
 function populateYears() {
     const yearDropdown = document.getElementById("year");
@@ -246,6 +257,7 @@ function populateYears() {
 
 // Function to populate months in the dropdown
 function populateMonths() {
+
     const monthDropdown = document.getElementById("month");
 
     // Get unique months from the stored shifts and sort them in ascending order
