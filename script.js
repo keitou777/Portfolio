@@ -186,6 +186,9 @@ function displayShifts() {
     const shiftList = document.getElementById("shiftList");
     shiftList.innerHTML = "";
 
+    // Sort shifts by date (newest first)
+    shifts.sort((a, b) => new Date(b.date) - new Date(a.date));
+
     shifts.forEach((shift, index) => {
         const listItem = document.createElement("li");
         
