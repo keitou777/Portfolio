@@ -47,7 +47,12 @@ button:hover {
 
 #shiftDisplay {
     margin-top: 20px;
-    display: none;
+    overflow-y: auto; /* Make the shift list scrollable */
+    max-height: 300px; /* Set a maximum height for better usability */
+}
+
+.scrollable-list {
+    padding: 0;
 }
 
 #shiftList {
