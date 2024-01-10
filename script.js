@@ -3,6 +3,24 @@
 // Data structure to store shifts
 let shifts = loadShiftsFromLocalStorage() || [];
 
+// Function to show/hide tabs
+function showTab(tabId) {
+	console.log(`Showing tab: ${tabId}`);
+    // Hide all tabs
+    const tabs = document.querySelectorAll('.tab');
+    tabs.forEach(tab => {
+        tab.style.display = 'none';
+    });
+
+    // Show the selected tab
+    const selectedTab = document.getElementById(tabId);
+    if (selectedTab) {
+        selectedTab.style.display = 'block';
+    } else {
+        console.error(`Tab not found: ${tabId}`);
+    }
+}
+
 function addShift() {
     const date = document.getElementById("date").value;
     const startTime = document.getElementById("startTime").value;
